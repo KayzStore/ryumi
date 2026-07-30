@@ -321,7 +321,7 @@ a{ color: inherit; }
   text-align:left; opacity:0; transform: translateY(-30px) scale(.92); max-height:0; overflow:hidden;
   transition: all .7s var(--ease);
 }
-.letter-paper.show{ opacity:1; transform:none; max-height: 900px; padding: 34px 28px; margin-top:26px; }
+.letter-paper.show{ opacity:1; transform:none; max-height: 4000px; padding: 34px 28px; margin-top:26px; }
 .letter-paper p{ font-family: var(--font-script); font-size: 19px; color: var(--wine-900); white-space: pre-line; line-height:1.75; }
 .letter-sign{ margin-top: 20px; text-align:right; font-family: var(--font-script); font-size:18px; color: var(--rose-600); }
 .read-again{
@@ -375,21 +375,6 @@ a{ color: inherit; }
 .modal-box .modal-icon{ font-size:32px; margin-bottom:10px; }
 .modal-box p{ font-family: var(--font-script); font-size:19px; color: var(--wine-900); }
 .modal-close{ position:absolute; top:12px; right:14px; background:none; border:none; font-size:20px; color: var(--ink-soft); }
-
-/* ==========================================================================
-   8. MEMORIES / SCRAPBOOK
-   ========================================================================== */
-.memories-scroll{ margin-top:40px; display:flex; gap:18px; overflow-x:auto; padding: 10px 4px 26px; scroll-snap-type: x mandatory; }
-.memory-card{
-  flex: 0 0 220px; scroll-snap-align:center; background:#fffdfb; padding:12px 12px 18px; border-radius:6px;
-  box-shadow: 0 10px 24px -6px rgba(74,32,51,.28); transform: rotate(var(--tilt,-2deg)); transition: transform .3s var(--ease);
-}
-.memory-card:nth-child(even){ --tilt: 2deg; }
-.memory-card:hover{ transform: rotate(0deg) translateY(-4px); }
-.memory-card img{ width:100%; height:150px; object-fit:cover; border-radius:2px; }
-.memory-card .m-date{ font-size:11px; color: var(--rose-600); font-weight:700; margin-top:10px; letter-spacing:.5px; }
-.memory-card h3{ font-size:15px; margin-top:4px; }
-.memory-card p{ font-size:12.5px; margin-top:6px; }
 
 /* ==========================================================================
    9. LOVE COUNTER
@@ -548,13 +533,6 @@ Di Girlfriend Day ini, aku cuma mau kamu tahu satu hal: kamu berharga banget. Ka
     { key:"love", label:"Buka kalau kamu perlu tahu seberapa besar cintaku ❤️", message:"Lebih dari yang bisa ditampung kata-kata. Lebih dari yang bisa ditunjukkan website ini. Kamu dicintai, sepenuhnya dan tanpa syarat, hari ini dan setiap hari." },
   ],
 
-  memories: [
-    { img:"kenangan1.jpg", date:"Maret 2023", title:"Hari yang Random Itu", text:"Tidak ada yang spesial terjadi, tapi entah kenapa itu jadi salah satu kenangan favoritku." },
-    { img:"kenangan2.jpg", date:"Juni 2023", title:"Trip ke Pantai", text:"Kamu takut sama ombak. Aku takut kehilangan tawa itu." },
-    { img:"kenangan3.jpg", date:"Oktober 2023", title:"Malam Nonton Waktu Hujan", text:"Kita bahkan tidak sampai selesai nonton filmnya. Tetap malam terbaik." },
-    { img:"kenangan4.jpg", date:"Desember 2023", title:"Malam Tahun Baru Pertama Kita", text:"Tidak ada kembang api besar, cuma kamu, dan entah kenapa itu sudah cukup." },
-  ],
-
   songs: [
     { title: "Lagu Kita #1", artist: "Penyanyi Favoritmu", cover: "cover1.jpg", src: "audio1.mp3" },
     { title: "Lagu Kita #2", artist: "Penyanyi Favoritmu", cover: "cover2.jpg", src: "audio2.mp3" },
@@ -697,15 +675,6 @@ Semoga kita bisa menciptakan ribuan kenangan lagi bersama.`,
     <p id="modal-text"></p>
   </div>
 </div>
-
-<!-- ============================== 8. MEMORIES ============================== -->
-<section class="section" id="memories">
-  <div class="container">
-    <div class="eyebrow reveal">Buku kenangan</div>
-    <h2 class="reveal">Kenangan Kita 🎞️</h2>
-    <div class="memories-scroll" id="memories-scroll"></div>
-  </div>
-</section>
 
 <!-- ============================== 9. LOVE COUNTER ============================== -->
 <section class="section" id="counter-section">
@@ -1141,23 +1110,6 @@ $('#read-again').addEventListener('click', ()=>{
 $('#modal-close').addEventListener('click', ()=> $('#modal-overlay').classList.remove('open'));
 $('#modal-overlay').addEventListener('click', e=>{ if(e.target.id==='modal-overlay') $('#modal-overlay').classList.remove('open'); });
 document.addEventListener('keydown', e=>{ if(e.key==='Escape') $('#modal-overlay').classList.remove('open'); });
-
-/* ============================================================
-   8. MEMORIES SCRAPBOOK
-   ============================================================ */
-(function renderMemories(){
-  const wrap = $('#memories-scroll');
-  CONFIG.memories.forEach(m=>{
-    const card = document.createElement('div');
-    card.className = 'memory-card reveal-scale';
-    card.innerHTML = `
-      <img src="${m.img}" alt="${m.title}">
-      <div class="m-date">${m.date}</div>
-      <h3>${m.title}</h3>
-      <p>${m.text}</p>`;
-    wrap.appendChild(card);
-  });
-})();
 
 /* ============================================================
    9. LOVE COUNTER — live
